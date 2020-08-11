@@ -9,13 +9,13 @@ pipeline {
     stage ('Build') {
       steps{
         echo "Building Project"
-        sh 'npm run ng --build  --prod'
+        sh "npm run ng --build  --prod"
       }
     }
     stage ('Archive') {
       steps{
         echo "Archiving Project"
-        archiveArtifacts artifacts: '*/.jar', followSymlinks: false
+        archiveArtifacts artifacts: '*/.json', followSymlinks: false
       }
     }
     stage ('Build Docker Image') {
@@ -40,8 +40,8 @@ pipeline {
     stage ('Deploy to Dev') {
       steps{
         echo "Deploying to Dev Environment"
-        sh "docker rm -f angular7-sample || true"
-        sh "docker run -d --name=angular7-sample -p 8081:8080 balajikoppala9700/shopping_cart"
+        sh "docker rm -f shopping_cart || true"
+        sh "docker run -d --name=petclinic -p 8081:8080 balajikoppala9700/shopping_cart"
       }
     }
   }
