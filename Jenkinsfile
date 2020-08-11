@@ -16,7 +16,7 @@ pipeline {
     stage ('Archive') {
       steps{
         echo "Archiving Project"
-        archiveArtifacts artifacts: '*/.json', followSymlinks: false
+        archiveArtifacts artifacts: '**/*.json', followSymlinks: false
       }
     }
     stage ('Build Docker Image') {
