@@ -9,7 +9,8 @@ pipeline {
     stage ('Build') {
       steps{
         echo "Building Project"
-        sh "npm run ng --build  --prod"
+        sh "npm install"
+        sh 'npm run ng -- build --prod' 
       }
     }
     stage ('Archive') {
@@ -41,7 +42,7 @@ pipeline {
       steps{
         echo "Deploying to Dev Environment"
         sh "docker rm -f shopping_cart || true"
-        sh "docker run -d --name=petclinic -p 8081:8080 balajikoppala9700/shopping_cart"
+        sh "docker run -d --name=shopping_cart -p 8081:8080 balajikoppala9700/shopping_cart"
       }
     }
   }
